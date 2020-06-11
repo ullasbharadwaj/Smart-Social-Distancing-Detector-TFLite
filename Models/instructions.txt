@@ -1,0 +1,36 @@
+Step 1:
+  Download the SSD mobilenet models from the tensorflow model zoo.
+
+Step 2: 
+  Generate TFLite graph from the checkpoint files
+     Step 2a:
+      clone the tensorflow object detection repository.
+  
+     Step 2b:
+      CONFIG_FILE = path to the pipeline.config file
+      CHKPT_DIR = path to checkpoint files
+
+      python object_detection/export_tflite_ssd_graph.py \
+      --pipeline_config_path=$CONFIG_FILE \
+      --trained_checkpoint_prefix=$CHKPT_DIR \
+      --output_directory=$MODEL_DIR \
+      --add_postprocessing_op=true \
+      --max_detections=20
+
+Step 3:
+  Generate TFLite model using generated TFLite graph
+
+# Installation of tflite converter: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/convert/cmdline.md
+
+tflite_convert --graph_def_file $MODEL_DIR/tflite_graph.pb --output_file $MODEL_DIR/detect.tflite \
+--input_arrays=normalized_input_image_tensor \
+--output_format=TFLITE \
+--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' \
+--input_shapes=1,300,300,3 --inference_type=QUANTIZED_UINT8 \
+--mean_values=128 --std_dev_values=128 \
+--change_concat_input_ranges=false \
+--allow_custom_ops \
+
+This generates a model which is not quantized but uses quantized input.
+
+Now, the required TFLite model is ready for deployment.
