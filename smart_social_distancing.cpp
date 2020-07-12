@@ -1,8 +1,11 @@
 /*****************************************************************************
-      Smart Social Distancing Detection Application
-      based on TensorFlow Lite Inference Engine
-
-      Model Used for Detection: SSD MobileNets
+      		Smart Social Distancing Detection 
+      
+      Application using TensorFlow Lite Interpreter Engine as 
+      backend to detect if social distancing is followed among
+      humans.
+     
+      Model used for Detection: SSD MobileNet
 
       Author: Ullas Bharadwaj
 ****************************************************************************/
