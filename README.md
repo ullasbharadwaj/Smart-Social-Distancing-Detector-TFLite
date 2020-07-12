@@ -16,4 +16,5 @@ The applications shows a video stream with the results of social distancing infe
  
  ## Dependencies
  OpenCV
+ 
  TfLite
