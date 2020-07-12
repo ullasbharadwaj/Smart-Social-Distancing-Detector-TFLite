@@ -13,3 +13,7 @@ The applications shows a video stream with the results of social distancing infe
     3. Safe Social Distancing
    
  Note: The calculation of Euclidean Distance and infernce of social distancing is written assuming the camera is in same plane of the scene of detection, example, webcam of a Laptop, smartphone camera. If this needs to be used with a CCTV at a corner, then the inference of Euclidean distances needs to be modified.
+ 
+ ## Dependencies
+ OpenCV
+ TfLite
