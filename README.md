@@ -18,3 +18,12 @@ The applications shows a video stream with the results of social distancing infe
  OpenCV
  
  TfLite
+ 
+ ## Building
+ 1. Build the tensorflowlite static library by using the make script in tensorflow/lite/tools/make/build_lib.sh (for x86 systems)
+ 2. export SDK_DIR=tensorflow
+ 3.	g++ smart_social_distancing.cpp -o smart_social_distancing -I${SDK_DIR}/ \
+	-I${SDK_DIR}/tensorflow/lite/tools/make/downloads/absl/ \
+	-I${SDK_DIR}/tensorflow/lite/tools/make/downloads/flatbuffers/include/ \
+	-L${SDK_DIR}/lite/tools/make/gen -ltensorflow-lite -lrt -lpthread `pkg-config --cflags --libs opencv4`
+4. Any building or linking errors can only arise from above include paths. Just make them synchronized with the Tf installation
